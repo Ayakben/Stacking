@@ -3,35 +3,27 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class DragUI : MonoBehaviour
 {
-
-    private bool mouseDown = false;
-    private Vector3 startMousePos;
-    private Vector3 startPos;
-
-
-    public void OnPointerDown(PointerEventData ped)
+    private bool clicked = false;
+    void OnMouseOver()
     {
-        mouseDown = true;
-        startPos = transform.position;
-        startMousePos = Input.mousePosition;
+        if (Input.GetMouseButtonDown(0))
+        {
+            clicked = true;
+        }
     }
-
-    public void OnPointerUp(PointerEventData ped)
-    {
-        mouseDown = false;
-    }
-
 
     void Update()
     {
-        if (mouseDown)
+        if (clicked == true)
         {
-            Vector3 currentPos = Input.mousePosition;
-            Vector3 diff = currentPos - startMousePos;
-            Vector3 pos = startPos + diff;
-            transform.position = pos;
+            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector2(cursorPos.x, cursorPos.y);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            clicked = false;
         }
     }
 }
