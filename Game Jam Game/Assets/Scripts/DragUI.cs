@@ -7,11 +7,13 @@ public class DragUI : MonoBehaviour
 {
     Rigidbody2D shape;
     private bool clicked = false;
+    bool locked = false;
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
             clicked = true;
+            shape.freezeRotation = true;
         }
     }
     private void Start()
@@ -30,6 +32,7 @@ public class DragUI : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             clicked = false;
+            shape.freezeRotation = false;
             shape.gravityScale = 1;
         }
     }
