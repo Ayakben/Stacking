@@ -23,7 +23,7 @@ public class DragUI : MonoBehaviour
     }
     void Update()
     {
-        if (clicked == true)
+        if (clicked)
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             shape.MovePosition(cursorPos);
