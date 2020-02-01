@@ -10,13 +10,15 @@ public class NewBlocks : MonoBehaviour
     Rigidbody2D rigidbody2D = new Rigidbody2D();
     Vector2 startPosition = new Vector2();
     public float y;
-        boxCollider2D.
+    void Start()
+    {
         rigidbody2D.GetComponent<Rigidbody2D>();
         canClick = true;
         partOfGame = false;
         startPosition = rigidbody2D.position;
         rigidbody2D.gravityScale = 0;
         boxCollider2D.isTrigger = true;
+    }
 
     // Update is called once per frame
     void Update()
