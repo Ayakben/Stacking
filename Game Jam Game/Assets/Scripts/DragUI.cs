@@ -6,10 +6,11 @@ using System.Collections;
 public class DragUI : MonoBehaviour
 {
     Rigidbody2D shape;
-    private bool clicked = false;
+    public bool clicked = false;
+    BoxCollider2D box;
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && shape.gameObject.tag != "Set")
         {
             clicked = true;
             shape.freezeRotation = true;
@@ -19,16 +20,17 @@ public class DragUI : MonoBehaviour
     {
         //Sets variable shape to the current objects rigidbody to change gravity
         shape = GetComponent<Rigidbody2D>();
+        box = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
-        if (clicked)
+        if (clicked == true)
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             shape.MovePosition(cursorPos);
             shape.gravityScale = 0;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&&box.isTrigger==false)
         {
             clicked = false;
             shape.freezeRotation = false;

@@ -10,7 +10,6 @@ public class Score : MonoBehaviour
     public float score;
     public GameObject scorer;
     public int score_int = 0;
-    public Camera camera;
 
     private void Awake()
     {
@@ -25,13 +24,10 @@ public class Score : MonoBehaviour
     }
     void Update()
     {
-        if (scorer.transform.position.y>camera.transform.position.y + 3)
-        {
-
-        }
         if (scorer != null)
         {
-            score = scorer.transform.position.y+ 2.684f;
+            score = scorer.transform.position.y + 2.684f;
+            scorer.tag = "Set";
             score_int = (int)(score * 500);
             score_text.text = (score_int).ToString();
         }
