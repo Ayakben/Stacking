@@ -9,8 +9,6 @@ public class Parallax : MonoBehaviour
     public float smoothing = 1f;
 
     private Transform cam;
-    private Vector3 previousCamPos;
-    public float backgroundTargetPosX;
     Vector3 startingCamPosition;
     Vector3[] startingBackgroundPositions;
 
