@@ -13,6 +13,8 @@ public class ObjectScoreChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Score.SetScore(3);
+        //Sets score to the y position of the object
+        int pos = (int) transform.position.y;
+        Score.SetScore(pos);
     }
 }
