@@ -25,7 +25,7 @@ public class DragUI : MonoBehaviour
         if (clicked == true)
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(cursorPos.x, cursorPos.y);
+            shape.MovePosition(cursorPos);
             shape.gravityScale = 0;
         }
         if (Input.GetMouseButtonUp(0))
