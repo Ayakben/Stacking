@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public Text text;
+    public string text;
+    public GameObject textBox;
     private static int score;
     public static void SetScore(int value)
     {
@@ -17,6 +18,7 @@ public class Score : MonoBehaviour
     }
     void Update()
     {
-        text.text = GetScore().ToString();
+        text = (GetScore() * 100).ToString();
+        textBox.GetComponent<Text>().text = text;
     }
 }
