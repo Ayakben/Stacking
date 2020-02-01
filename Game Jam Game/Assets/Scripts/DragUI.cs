@@ -7,7 +7,6 @@ public class DragUI : MonoBehaviour
 {
     Rigidbody2D shape;
     private bool clicked = false;
-    bool locked = false;
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
