@@ -7,7 +7,7 @@ public class DragUI : MonoBehaviour
 {
     Rigidbody2D shape;
     public bool clicked = false;
-    BoxCollider2D box;
+    PolygonCollider2D poly;
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && shape.gameObject.tag != "Set")
@@ -20,7 +20,7 @@ public class DragUI : MonoBehaviour
     {
         //Sets variable shape to the current objects rigidbody to change gravity
         shape = GetComponent<Rigidbody2D>();
-        box = GetComponent<BoxCollider2D>();
+        poly = GetComponent<PolygonCollider2D>();
     }
     void Update()
     {
@@ -30,11 +30,14 @@ public class DragUI : MonoBehaviour
             shape.MovePosition(cursorPos);
             shape.gravityScale = 0;
         }
-        if (Input.GetMouseButtonUp(0)&&box.isTrigger==false)
+        if (Input.GetMouseButtonUp(0))
         {
             clicked = false;
-            shape.freezeRotation = false;
-            shape.gravityScale = 1;
+            if (poly.isTrigger == false)
+            {
+                shape.freezeRotation = false;
+                shape.gravityScale = 1;
+            }
         }
     }
 }

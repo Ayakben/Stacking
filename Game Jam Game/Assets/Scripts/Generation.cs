@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Generation : MonoBehaviour
 {
+    public Transform pos;
     public int num = 0;
-    public GameObject gameObject;
+    int random;
+    public GameObject[] construction_items = new GameObject[3];
     // Start is called before the first frame update
     void Start()
     {
-        if(num < 2)
+       random = Random.Range(0, 2);
+        if(num < 3)
         {
             num++;
-            GameObject newGameObject = Instantiate(gameObject);
+            Instantiate(construction_items[random]);
         }
 
     }
