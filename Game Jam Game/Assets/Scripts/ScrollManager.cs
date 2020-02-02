@@ -22,7 +22,7 @@ public class ScrollManager : MonoBehaviour
         {
             trans_rights.position = new Vector3(trans_rights.position.x, trans_rights.position.y - .1f, trans_rights.position.z);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && (this.transform.position.y <= Score.instance.score + 1f))
         {
             trans_rights.transform.position = new Vector3(trans_rights.position.x, trans_rights.position.y + .1f, trans_rights.position.z);
         }

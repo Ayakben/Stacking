@@ -34,6 +34,10 @@ public class NewBlocks : MonoBehaviour
         mark = Score.instance.score + 2.5f;
         if(startPosition.y != Camera.main.transform.position.y-2.5f)startPosition = new Vector2(startPosition.x, Camera.main.transform.position.y -2.5f);
         y = rigidbody2D.position.y;
+        if(this.transform.position.y < startPosition.y && !partOfGame)
+        {
+            rigidbody2D.MovePosition(startPosition);
+        }
         if (Input.GetMouseButtonUp(0))
         {
             if (!partOfGame)

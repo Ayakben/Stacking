@@ -12,6 +12,7 @@ public class Score : MonoBehaviour
     public int score_int = 0;
     public float score_max;
     public float count = 0;
+    public Transform DropArea;
 
     public float getScore()
     {
