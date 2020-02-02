@@ -780,7 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985935950}
   - component: {fileID: 1985935949}
-  - component: {fileID: 1985935951}
+  - component: {fileID: 1985935952}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -800,10 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63832987c9e360c40b33377257e4b16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuMusic:
-  - {fileID: 1985935951}
-  - {fileID: 0}
-  - {fileID: 0}
+  menuMusic: {fileID: 1985935952}
 --- !u!4 &1985935950
 Transform:
   m_ObjectHideFlags: 0
@@ -818,7 +815,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1985935951
+--- !u!82 &1985935952
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
