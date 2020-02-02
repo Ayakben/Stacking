@@ -5,6 +5,7 @@ public class NewBlocks : MonoBehaviour
     PolygonCollider2D polyCollider2D;
     private bool partOfGame;
     public float mark; //Mark needs to be moved up proportional to score 
+    //Will implement the movent of mark when camera works
     Rigidbody2D rigidbody2D;
     Vector2 startPosition = new Vector2();
     public float y;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    AudioSource menuMusic;
     // Start is called before the first frame update
     void Awake()
     {
@@ -54,6 +55,7 @@ public class SceneTransition : MonoBehaviour
         SaveLoadManager.instance.Save();
         
         SceneManager.LoadScene(0);
+        menuMusic.Play(0);
     }
     public void SceneChange_1()
     {
