@@ -20,7 +20,7 @@ public class NewBlocks : MonoBehaviour
         polyCollider2D = GetComponent<PolygonCollider2D>();
         polyCollider2D.isTrigger = true;
         partOfGame = false;
-        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y-2.5f,-.5f);
+        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y - 2.5f, -.5f);
         startPosition = this.transform.position;
         this.transform.rotation = Quaternion.identity;
         //this.transform.SetAsFirstSibling();
@@ -42,6 +42,7 @@ public class NewBlocks : MonoBehaviour
                 {
                     polyCollider2D.isTrigger = false;
                     rigidbody2D.gravityScale = 1;
+                    rigidbody2D.constraints = RigidbodyConstraints2D.None;
                     partOfGame = true;
                     rigidbody2D.gameObject.tag = "Set";
                     //after it's dropped, create an object to fill this block's empty slot
