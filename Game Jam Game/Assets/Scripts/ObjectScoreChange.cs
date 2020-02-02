@@ -17,17 +17,24 @@ public class ObjectScoreChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        clicked = rigidBody.freezeRotation;
-        if (!clicked)
+        if (!Score.instance.loss && !Score.instance.victory)
         {
-            //based on heighest block, track the height and set it as the scorer to be used for score
-            pos = (int)transform.position.y;
-            if (pos > Score.instance.score)
+            clicked = rigidBody.freezeRotation;
+            if (!clicked)
             {
-                Score.instance.scorer = this.gameObject;
+                //based on heighest block, track the height and set it as the scorer to be used for score
+                pos = (int)transform.position.y;
+                if (pos > Score.instance.score)
+                {
+                    Score.instance.scorer = this.gameObject;
+                }
+                if (pos < -5)
+                {
+                    Score.instance.loss = true;
+                    Destroy(this.gameObject);
+                }
             }
         }
-    }
-        //Sets score to the y position of the object
+
+    }        //Sets score to the y position of the object
 }

@@ -8,6 +8,7 @@ public class DragUI : MonoBehaviour
     Rigidbody2D shape;
     public bool clicked = false;
     PolygonCollider2D poly;
+    public Vector3 pos;
     void OnMouseOver()
     {
         //Set is a tag that indicates whether or not a block has been dropped
@@ -26,23 +27,27 @@ public class DragUI : MonoBehaviour
         //Sets variable shape to the current objects rigidbody to change gravity
         shape = GetComponent<Rigidbody2D>();
         poly = GetComponent<PolygonCollider2D>();
+        pos = shape.gameObject.transform.position;
     }
     void Update()
     {
-        if (clicked == true)
+        if (!Score.instance.loss && !Score.instance.victory)
         {
-            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            shape.MovePosition(cursorPos);
-            shape.gravityScale = 0;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            shape.position = new Vector3(shape.position.x, shape.position.y, 0);
-            clicked = false;
-            if (poly.isTrigger == false)
+            if (clicked == true)
             {
-                shape.freezeRotation = false;
-                shape.gravityScale = 1;
+                Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                shape.MovePosition(cursorPos);
+                shape.gravityScale = 0;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                pos.z += 1;
+                clicked = false;
+                if (poly.isTrigger == false)
+                {
+                    shape.freezeRotation = false;
+                    shape.gravityScale = 1;
+                }
             }
         }
     }
