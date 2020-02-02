@@ -11,6 +11,10 @@ public class Score : MonoBehaviour
     public GameObject scorer;
     public int score_int = 0;
 
+    public float getScore()
+    {
+        return score;
+    }
     private void Awake()
     {
         if (instance == null)

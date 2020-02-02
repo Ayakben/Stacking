@@ -28,7 +28,7 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && (this.transform.position.y > 0))
         {
             transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
         }

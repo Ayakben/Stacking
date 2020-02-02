@@ -5,7 +5,6 @@ public class NewBlocks : MonoBehaviour
     PolygonCollider2D polyCollider2D;
     private bool partOfGame;
     public float mark; //Mark needs to be moved up proportional to score 
-    //Will implement the movent of mark when camera works
     Rigidbody2D rigidbody2D;
     Vector2 startPosition = new Vector2();
     public float y;
@@ -14,8 +13,8 @@ public class NewBlocks : MonoBehaviour
     Vector3 scaleSmall = new Vector3(.1f, .1f, .1f);
     void Start()
     {
-        this.transform.localScale = scaleSmall;
         mark = 2.5f;
+        this.transform.localScale = scaleSmall;
         rigidbody2D = GetComponent<Rigidbody2D>();
         polyCollider2D = GetComponent<PolygonCollider2D>();
         partOfGame = false;
@@ -28,6 +27,10 @@ public class NewBlocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ima be real with you ive been pasing back and forth tring to impement this and ik the solution is like really simple and im just tired and also an idiot but its 5am
+        // idk y i cant figure it out but at least you slept and are maybe not an idiot im like 90% i did the exact same shit earlier today
+        // i got the camera working with arrows so i leave these like 2 lines of code prob up to you cause im too stupid and tired (Best Wishs -Ben)
+        //mark = Score.getScore();
         y = rigidbody2D.position.y;
         if (Input.GetMouseButtonUp(0))
         {
