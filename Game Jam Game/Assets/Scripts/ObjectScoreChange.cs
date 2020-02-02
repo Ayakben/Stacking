@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class ObjectScoreChange : MonoBehaviour
 {
-    public Rigidbody2D rigidbody;
-    public float speed;
-    public bool sleep;
+    Rigidbody2D rigidBody;
+    public bool clicked;
+    public bool scorer;
+    int pos;
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-    }
+          rigidBody = GetComponent<Rigidbody2D>();
+     }
 
     // Update is called once per frame
     void Update()
-    { 
-        if(rigidbody.IsSleeping())
+    {
+        
+        clicked = rigidBody.freezeRotation;
+        if (!clicked)
         {
-            sleep = true;
-        }
-        else
-        {
-            sleep = false;
-        }
-        speed = rigidbody.velocity.magnitude;
-        //Sets score to the y position of the object
-        int pos = (int) transform.position.y;
-        if (pos > Score.GetScore())
-        {
-            if (!(Input.GetMouseButton(0)))
+            pos = (int)transform.position.y;
+            if (pos > Score.instance.score)
             {
-                if (rigidbody.IsSleeping())
-                {
-                    Score.SetScore(pos);
-                }
+                Score.instance.scorer = this.gameObject;
             }
         }
     }
+        //Sets score to the y position of the object
 }

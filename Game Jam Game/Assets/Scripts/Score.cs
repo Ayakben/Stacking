@@ -5,20 +5,31 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public string text;
-    public GameObject textBox;
-    private static int score;
-    public static void SetScore(int value)
+    public static Score instance;
+    public Text score_text;
+    public float score;
+    public GameObject scorer;
+    public int score_int = 0;
+
+    private void Awake()
     {
-        score = value;
-    }
-    public static int GetScore()
-    {
-        return score;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+        }
     }
     void Update()
     {
-        text = (GetScore() * 100).ToString();
-        textBox.GetComponent<Text>().text = text;
+        if (scorer != null)
+        {
+            score = scorer.transform.position.y + 2.684f;
+            scorer.tag = "Set";
+            score_int = (int)(score * 500);
+            score_text.text = (score_int).ToString();
+        }
     }
 }
