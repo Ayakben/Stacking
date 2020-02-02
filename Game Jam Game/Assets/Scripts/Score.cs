@@ -10,6 +10,8 @@ public class Score : MonoBehaviour
     public float score;
     public GameObject scorer;
     public int score_int = 0;
+    public float score_max;
+    public float count = 0;
 
     public float getScore()
     {
@@ -40,5 +42,16 @@ public class Score : MonoBehaviour
             score_int = (int)(score * 500);
             score_text.text = (score_int).ToString();
         }
-    }
-}
+            if(scorer.tag == "Set")
+            {
+                if (count >= 100 && score >= score_max)
+                {
+                    count += .1f;
+                }
+                else
+                {
+                    count = 0;
+                }
+                }
+            }
+        }

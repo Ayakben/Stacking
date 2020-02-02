@@ -4,24 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
+public class ScrollManager : MonoBehaviour
 {
     public bool flipped;
-    public Camera camera;
-    public bool clicked;
     public float speed = 5;
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        clicked = true;
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        clicked = false;
-    }
+    Transform trans_rights;
 
     // Start is called before the first frame update
     void Start()
     {
+        trans_rights = this.transform;
         
     }
 
@@ -30,11 +22,11 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
     {
         if (Input.GetKey(KeyCode.DownArrow) && (this.transform.position.y > 0))
         {
-            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+            trans_rights.position = new Vector3(trans_rights.position.x, trans_rights.position.y - .1f, trans_rights.position.z);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+            trans_rights.transform.position = new Vector3(trans_rights.position.x, trans_rights.position.y + .1f, trans_rights.position.z);
         }
         /*
         idk wtf you were doing here
