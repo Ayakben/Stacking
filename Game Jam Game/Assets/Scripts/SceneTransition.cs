@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    AudioSource menuMusic;
+    //We can put all of our menu music in the array so we can stop it all at a given time to play the next menu music
+    public AudioSource[] menuMusic;
     // Start is called before the first frame update
     void Awake()
     {
@@ -15,6 +16,10 @@ public class SceneTransition : MonoBehaviour
     void Update()
     {
 
+    }
+    public void playAudio(AudioSource audio)
+    {
+        audio.Play(0);
     }
     public void SceneChange_0()
     {
@@ -55,10 +60,10 @@ public class SceneTransition : MonoBehaviour
         SaveLoadManager.instance.Save();
         
         SceneManager.LoadScene(0);
-        menuMusic.Play(0);
     }
     public void SceneChange_1()
     {
+        menuMusic[0].Play(0);
         SceneManager.LoadScene(1);
     }
     public void SceneChange_2()
