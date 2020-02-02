@@ -37,6 +37,7 @@ public class DragUI : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            shape.position = new Vector3(shape.position.x, shape.position.y, 0);
             clicked = false;
             if (poly.isTrigger == false)
             {

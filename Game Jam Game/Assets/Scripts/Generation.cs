@@ -29,7 +29,7 @@ public class Generation : MonoBehaviour
         {
             random = Random.Range(0, 10);
             num++;
-            Instantiate(construction_items[random],new Vector3 ((-2*num)-1,-3,-1), Quaternion.identity);
+            Instantiate(construction_items[random],new Vector3 ((-2*num)-1,Camera.main.transform.position.y-2.5f,-1), Quaternion.identity);
         }
 
     }
@@ -37,7 +37,7 @@ public class Generation : MonoBehaviour
     // Create random object at specific position
     public void CreateObject(Vector3 pos)
     {
-        random = Random.Range(0, 2);
+        random = Random.Range(0, 10);
         Instantiate(construction_items[random], pos, Quaternion.identity);
     }
 }
