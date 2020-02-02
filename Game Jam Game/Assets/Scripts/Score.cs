@@ -34,15 +34,14 @@ public class Score : MonoBehaviour
         {
             //account for starting height of foundation
             //determine score from height of scorer gameobject
-            score = scorer.transform.position.y + 2.684f;
+            score = scorer.transform.position.y + 3.529528f;
             //set the tag for the specific gameobject
             //this object will be the object at the highest point
             //this should be the object above the mark when it's dropped
             scorer.tag = "Set";
             score_int = (int)(score * 500);
-            score_text.text = (score_int).ToString();
-        }
-            if(scorer.tag == "Set")
+            score_text.text = "SCORE: " + (score_int).ToString();
+            if (scorer.tag == "Set")
             {
                 if (count >= 100 && score >= score_max)
                 {
@@ -52,6 +51,7 @@ public class Score : MonoBehaviour
                 {
                     count = 0;
                 }
-                }
             }
+        }
+        }
         }

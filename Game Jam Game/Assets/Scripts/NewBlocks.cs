@@ -15,12 +15,13 @@ public class NewBlocks : MonoBehaviour
     {
         this.transform.localScale = scaleSmall;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.gravityScale = 0;
+        rigidbody2D.freezeRotation = true;
         polyCollider2D = GetComponent<PolygonCollider2D>();
         polyCollider2D.isTrigger = true;
         partOfGame = false;
-        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y-2.5f);
+        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y-2.5f,-.5f);
         startPosition = this.transform.position;
-        rigidbody2D.gravityScale = 0;
         this.transform.rotation = Quaternion.identity;
         //this.transform.SetAsFirstSibling();
 
@@ -42,6 +43,7 @@ public class NewBlocks : MonoBehaviour
                     polyCollider2D.isTrigger = false;
                     rigidbody2D.gravityScale = 1;
                     partOfGame = true;
+                    rigidbody2D.gameObject.tag = "Set";
                     //after it's dropped, create an object to fill this block's empty slot
                     Generation.instance.CreateObject(startPosition);
                 }
