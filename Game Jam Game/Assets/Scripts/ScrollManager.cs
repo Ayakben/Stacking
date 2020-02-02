@@ -31,24 +31,14 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
         {
             if (flipped)
             {
+                //scroll down
                 camera.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - .1f, Camera.main.transform.position.z);
             }
             else
             {
+                //scroll up
                 camera.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + .1f, Camera.main.transform.position.z);
             }
         }
-        if(camera.transform.position.y-2.684 < Score.instance.scorer.transform.position.y)StartCoroutine(MoveUp());
-        //StartCoroutine(MoveDown());
-    }
-    public IEnumerator MoveUp()
-    {
-        Debug.Log("Stuff");
-        yield return 0;
-    }
-    public IEnumerator MoveDown()
-    {
-
-        yield return 0;
     }
 }

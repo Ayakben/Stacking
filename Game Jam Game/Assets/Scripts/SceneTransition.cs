@@ -17,8 +17,12 @@ public class SceneTransition : MonoBehaviour
     }
     public void SceneChange_0()
     {
+        //make sure that we're in the main game screen before saving a score to avoid errors
         if (Score.instance != null)
         {
+            //change leaderboard values
+            //from bottom to top, swap out lowest value that is less than current score
+            //assuming an ordered list, this makes the insertion very quick
             for (int i = 9; i > -1; i--)
             {
                 if (Score.instance.score_int > SaveLoadManager.instance.data.score[i])
@@ -28,7 +32,10 @@ public class SceneTransition : MonoBehaviour
                 }
             }
             int temp;
-
+            
+            //orders the list of values
+            //descending order
+            //a bit more costly than other potential sorts, but simple and negligible cost for small list size
             for (int j = 0; j <= SaveLoadManager.instance.data.score.Length - 2; j++)
             {
                 for (int i = 0; i <= SaveLoadManager.instance.data.score.Length - 2; i++)
@@ -42,7 +49,9 @@ public class SceneTransition : MonoBehaviour
                 }
             }
 
-        }        SaveLoadManager.instance.Save();
+        }   
+        //save the score values to be displayed
+        SaveLoadManager.instance.Save();
         
         SceneManager.LoadScene(0);
     }
@@ -52,6 +61,7 @@ public class SceneTransition : MonoBehaviour
     }
     public void SceneChange_2()
     {
+        //load the save data when we go to the leaderboard screen
         SaveLoadManager.instance.Load();
         SceneManager.LoadScene(2);
     }
