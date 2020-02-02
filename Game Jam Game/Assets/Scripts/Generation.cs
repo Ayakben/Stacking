@@ -29,7 +29,7 @@ public class Generation : MonoBehaviour
         {
             random = Random.Range(0, 10);
             num++;
-            Instantiate(construction_items[random],new Vector3 ((-2*num)-1,Camera.main.transform.position.y-2.5f,-1), Quaternion.identity);
+            Instantiate(construction_items[random],new Vector3 ((-2*num)+1,Camera.main.transform.position.y-2.5f,-1), Quaternion.identity);
         }
 
     }

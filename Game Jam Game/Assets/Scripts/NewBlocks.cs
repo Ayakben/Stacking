@@ -19,9 +19,9 @@ public class NewBlocks : MonoBehaviour
         polyCollider2D = GetComponent<PolygonCollider2D>();
         polyCollider2D.isTrigger = true;
         partOfGame = false;
-        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y - 2.5f, -.5f);
+        this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y - 2.5f, -1f);
         startPosition = this.transform.position;
-
+        //if(startPosition.x < -7)startPosition.x += 1;
         //this.transform.SetAsFirstSibling();
 
 
@@ -30,8 +30,7 @@ public class NewBlocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Score.instance.loss && !Score.instance.victory)
-        {
+        
             mark = Score.instance.score + 2.5f;
             if (startPosition.y != Camera.main.transform.position.y - 2.5f) startPosition = new Vector2(startPosition.x, Camera.main.transform.position.y - 2.5f);
             y = rigidbody2D.position.y;
@@ -40,6 +39,8 @@ public class NewBlocks : MonoBehaviour
                 this.transform.rotation = Quaternion.identity;
                 rigidbody2D.MovePosition(startPosition);
             }
+        if (!Score.instance.loss && !Score.instance.victory)
+        {
             if (Input.GetMouseButtonUp(0))
             {
                 if (!partOfGame)
@@ -51,6 +52,7 @@ public class NewBlocks : MonoBehaviour
                         rigidbody2D.constraints = RigidbodyConstraints2D.None;
                         partOfGame = true;
                         rigidbody2D.gameObject.tag = "Set";
+                        rigidbody2D.gameObject.transform.position = new Vector3(rigidbody2D.gameObject.transform.position.x, rigidbody2D.gameObject.transform.position.y, 0);
                         //after it's dropped, create an object to fill this block's empty slot
                         Generation.instance.CreateObject(startPosition);
                     }

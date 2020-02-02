@@ -31,6 +31,7 @@ public class ObjectScoreChange : MonoBehaviour
                 if (pos < -5)
                 {
                     Score.instance.loss = true;
+                    Destroy(this.gameObject);
                 }
             }
         }
