@@ -10,6 +10,11 @@ public class DragUI : MonoBehaviour
     PolygonCollider2D poly;
     void OnMouseOver()
     {
+        //Set is a tag that indicates whether or not a block has been dropped
+        //blocks that have that tag have been dropped and can no longer be picked
+        //refer to the Score script for where it's set
+
+        //check for the Set tag
         if (Input.GetMouseButtonDown(0) && shape.gameObject.tag != "Set")
         {
             clicked = true;

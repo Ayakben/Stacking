@@ -21,6 +21,7 @@ public class ObjectScoreChange : MonoBehaviour
         clicked = rigidBody.freezeRotation;
         if (!clicked)
         {
+            //based on heighest block, track the height and set it as the scorer to be used for score
             pos = (int)transform.position.y;
             if (pos > Score.instance.score)
             {

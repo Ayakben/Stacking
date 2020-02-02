@@ -44,6 +44,8 @@ public class SaveLoadManager : MonoBehaviour
             data = loaded;
             file.Close();
         }
+        // sort the loaded data just in case because I'm not sure it's saved in a sorted way
+        //more of a safety measure
         Sort();
     }
     public void Sort()

@@ -4,7 +4,7 @@ public class NewBlocks : MonoBehaviour
 {
     PolygonCollider2D polyCollider2D;
     private bool partOfGame;
-    public float mark;
+    public float mark; //Mark needs to be moved up proportional to score 
     Rigidbody2D rigidbody2D;
     Vector2 startPosition = new Vector2();
     public float y;
@@ -32,6 +32,7 @@ public class NewBlocks : MonoBehaviour
                     polyCollider2D.isTrigger = false;
                     rigidbody2D.gravityScale = 1;
                     partOfGame = true;
+                    //after it's dropped, create an object to fill this block's empty slot
                     Generation.instance.CreateObject(startPosition);
                 }
                 //there to setup putting the block back if the user releases the block under the mark
