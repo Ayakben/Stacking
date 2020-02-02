@@ -9,6 +9,7 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
     public bool flipped;
     public Camera camera;
     public bool clicked;
+    public float speed = 5;
     public void OnPointerDown(PointerEventData eventData)
     {
         clicked = true;
@@ -27,6 +28,16 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+        }
+        /*
+        idk wtf you were doing here
         if (clicked)
         {
             if (flipped)
@@ -40,5 +51,6 @@ public class ScrollManager : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
                 camera.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + .1f, Camera.main.transform.position.z);
             }
         }
+        */
     }
 }
