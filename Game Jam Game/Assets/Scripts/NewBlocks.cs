@@ -14,7 +14,7 @@ public class NewBlocks : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         polyCollider2D = GetComponent<PolygonCollider2D>();
         partOfGame = false;
-        startPosition = rigidbody2D.position;
+        startPosition = this.transform.position;
         rigidbody2D.gravityScale = 0;
         polyCollider2D.isTrigger = true;
     }
@@ -32,6 +32,7 @@ public class NewBlocks : MonoBehaviour
                     polyCollider2D.isTrigger = false;
                     rigidbody2D.gravityScale = 1;
                     partOfGame = true;
+                    Generation.instance.CreateObject(startPosition);
                 }
                 //there to setup putting the block back if the user releases the block under the mark
                 else
