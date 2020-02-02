@@ -29,20 +29,23 @@ public class DragUI : MonoBehaviour
     }
     void Update()
     {
-        if (clicked == true)
+        if (!Score.instance.loss && !Score.instance.victory)
         {
-            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            shape.MovePosition(cursorPos);
-            shape.gravityScale = 0;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            shape.position = new Vector3(shape.position.x, shape.position.y, 0);
-            clicked = false;
-            if (poly.isTrigger == false)
+            if (clicked == true)
             {
-                shape.freezeRotation = false;
-                shape.gravityScale = 1;
+                Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                shape.MovePosition(cursorPos);
+                shape.gravityScale = 0;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                shape.position = new Vector3(shape.position.x, shape.position.y, 0);
+                clicked = false;
+                if (poly.isTrigger == false)
+                {
+                    shape.freezeRotation = false;
+                    shape.gravityScale = 1;
+                }
             }
         }
     }

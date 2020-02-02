@@ -16,13 +16,12 @@ public class NewBlocks : MonoBehaviour
         this.transform.localScale = scaleSmall;
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 0;
-        rigidbody2D.freezeRotation = true;
         polyCollider2D = GetComponent<PolygonCollider2D>();
         polyCollider2D.isTrigger = true;
         partOfGame = false;
         this.transform.position = new Vector3(this.transform.position.x, Camera.main.transform.position.y - 2.5f, -.5f);
         startPosition = this.transform.position;
-        this.transform.rotation = Quaternion.identity;
+
         //this.transform.SetAsFirstSibling();
 
 
@@ -31,48 +30,52 @@ public class NewBlocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mark = Score.instance.score + 2.5f;
-        if(startPosition.y != Camera.main.transform.position.y-2.5f)startPosition = new Vector2(startPosition.x, Camera.main.transform.position.y -2.5f);
-        y = rigidbody2D.position.y;
-        if(this.transform.position.y < startPosition.y && !partOfGame)
+        if (!Score.instance.loss && !Score.instance.victory)
         {
-            rigidbody2D.MovePosition(startPosition);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (!partOfGame)
+            mark = Score.instance.score + 2.5f;
+            if (startPosition.y != Camera.main.transform.position.y - 2.5f) startPosition = new Vector2(startPosition.x, Camera.main.transform.position.y - 2.5f);
+            y = rigidbody2D.position.y;
+            if (this.transform.position.y != startPosition.y && !partOfGame && rigidbody2D.freezeRotation != true)
             {
-                if (rigidbody2D.position.y > mark)
+                this.transform.rotation = Quaternion.identity;
+                rigidbody2D.MovePosition(startPosition);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (!partOfGame)
                 {
-                    polyCollider2D.isTrigger = false;
-                    rigidbody2D.gravityScale = 1;
-                    rigidbody2D.constraints = RigidbodyConstraints2D.None;
-                    partOfGame = true;
-                    rigidbody2D.gameObject.tag = "Set";
-                    //after it's dropped, create an object to fill this block's empty slot
-                    Generation.instance.CreateObject(startPosition);
-                }
-                //there to setup putting the block back if the user releases the block under the mark
-                else
-                {
-                    rigidbody2D.MovePosition(startPosition);
+                    if (rigidbody2D.position.y > mark)
+                    {
+                        polyCollider2D.isTrigger = false;
+                        rigidbody2D.gravityScale = 1;
+                        rigidbody2D.constraints = RigidbodyConstraints2D.None;
+                        partOfGame = true;
+                        rigidbody2D.gameObject.tag = "Set";
+                        //after it's dropped, create an object to fill this block's empty slot
+                        Generation.instance.CreateObject(startPosition);
+                    }
+                    //there to setup putting the block back if the user releases the block under the mark
+                    else
+                    {
+                        rigidbody2D.MovePosition(startPosition);
+                    }
                 }
             }
-        }
 
-        //Scales the object based on if it is above the line or not (I know it can be neater and prob put in the above loop but its 3 am, it works, and dont question my methods i got other shit to fix)
-        if (rigidbody2D.position.y > mark && !partOfGame)
-        {
-            this.transform.localScale = scaleBig;
-        }
-        else 
-        {
-            this.transform.localScale = scaleSmall;
-        }
-        if(partOfGame)
-        {
-            this.transform.localScale = scaleBig;
+            //Scales the object based on if it is above the line or not (I know it can be neater and prob put in the above loop but its 3 am, it works, and dont question my methods i got other shit to fix)
+            if (rigidbody2D.position.y > mark && !partOfGame)
+            {
+                this.transform.localScale = scaleBig;
+            }
+            else
+            {
+                this.transform.localScale = scaleSmall;
+            }
+            if (partOfGame)
+            {
+                this.transform.localScale = scaleBig;
+            }
         }
     }
-}
-                  
+
+}                  
