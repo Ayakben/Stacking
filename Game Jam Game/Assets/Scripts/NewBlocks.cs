@@ -8,11 +8,11 @@ public class NewBlocks : MonoBehaviour
     Rigidbody2D rigidbody2D;
     Vector2 startPosition = new Vector2();
     public float y;
+    //It also doesnt play nice when i try to decalre this in the start (DONT TOUCH YET!!!)
     Vector3 scaleBig = new Vector3(.2f, .2f, .2f);
+    Vector3 scaleSmall = new Vector3(.1f, .1f, .1f);
     void Start()
     {
-        //I dont know why unity wouldn't update the vector outside of the start when i was testing but it works now (DONT TOUCH YET!!!!)  
-        Vector3 scaleSmall = new Vector3(.1f, .1f, .1f);
         this.transform.localScale = scaleSmall;
         mark = 2.5f;
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -37,8 +37,6 @@ public class NewBlocks : MonoBehaviour
                     polyCollider2D.isTrigger = false;
                     rigidbody2D.gravityScale = 1;
                     partOfGame = true;
-                    //Scale the object up when it is played
-                    this.transform.localScale = scaleBig;
                     //after it's dropped, create an object to fill this block's empty slot
                     Generation.instance.CreateObject(startPosition);
                 }
@@ -49,5 +47,19 @@ public class NewBlocks : MonoBehaviour
                 }
             }
         }
+        //Scales the object based on if it is above the line or not (I know it can be neater and prob put in the above loop but its 3 am, it works, and dont question my methods i got other shit to fix)
+        if (rigidbody2D.position.y > mark && !partOfGame)
+        {
+            this.transform.localScale = scaleBig;
+        }
+        else 
+        {
+            this.transform.localScale = scaleSmall;
+        }
+        if(partOfGame)
+        {
+            this.transform.localScale = scaleBig;
+        }
     }
 }
+                  
