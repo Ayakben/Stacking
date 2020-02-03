@@ -13,10 +13,11 @@ public class Cutscene : MonoBehaviour
         public Sprite o5;
         public Sprite o6;
     public Button but;
-    public int num = 3;
+    public int num = 1;
     public static Cutscene instance;
     public bool done = true;
     public bool all = false;
+    public GameObject canvas;
     //change the sprites for the button
     private void Awake()
     {
@@ -35,38 +36,33 @@ public class Cutscene : MonoBehaviour
         {
             case 0:
                 num++;
-                but.image.sprite = o4;
+                but.image.sprite = o2;
                 break;
             case 1:
                 num++;
-                but.image.sprite = o5;
+                but.image.sprite = o3;
                 break;
             case 2:
-                num++;
-                but.image.sprite = o6;
+                done = false;
                 break;
             case 3:
                 num++;
-                but.image.sprite = o1;
+                but.image.sprite = o5;
                 break;
             case 4:
                 num++;
-                but.image.sprite = o2;
+                but.image.sprite = o6;
                 break;
             case 5:
-                num++;
-                but.image.sprite = o3;
-                break;
-            case 6:
-                done = false;
                 if (Score.instance.victory) all = true;
-                num = 0;
+                done = false;
                 break;
 
         }
     }
     public void Update()
     {
+        canvas.SetActive(!done);
         this.gameObject.SetActive(done);
     }
 }

@@ -19,6 +19,7 @@ public class Score : MonoBehaviour
     public GameObject lose;
     public GameObject cont;
     public GameObject cutscene;
+    public bool custscene = false;
 
     private void Awake()
     {
@@ -35,6 +36,14 @@ public class Score : MonoBehaviour
     {
         lose.SetActive(loss);
             win.SetActive(victory);
+        if (victory&&!custscene)
+        {
+            custscene = true;
+            cutscene.SetActive(victory);
+            Cutscene.instance.num = 3;
+            Cutscene.instance.but.image.sprite = Cutscene.instance.o4;
+            Cutscene.instance.done = true;
+        }
         if (victory && Cutscene.instance.all)
         {
             cont.SetActive(victory);
@@ -75,8 +84,6 @@ public class Score : MonoBehaviour
             if (score_int >= score_max)
             {
                 victory = true;
-                    cutscene.SetActive(victory);
-                    Cutscene.instance.done = true;
                 count = 0;
             }
         }
